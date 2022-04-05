@@ -85,6 +85,24 @@ const assets = {
             url: "./assets/mochila.jpg",
             descripcion: "Mochila Wireless Control importada.",
         },
+        {
+            id: 7,
+            titulo: "Mochila",
+            subtitulo: "Mochila wireless",
+            precio: 2000,
+            disponibilidad: 25,
+            url: "./assets/mochila.jpg",
+            descripcion: "Mochila Wireless Control importada.",
+        },
+        {
+            id: 7,
+            titulo: "Mochila",
+            subtitulo: "Mochila wireless",
+            precio: 2000,
+            disponibilidad: 25,
+            url: "https://pbs.twimg.com/media/D6uc2kBX4AAv3xV.jpg",
+            descripcion: "Mochila Wireless Control importada.",
+        },
     ]
 };
 
