@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="La tienda online con la mejor variedad de prendas de todo tipo, al mejor precio y con envios a todo el país.">
+    <meta name="keywords" content="verano, tendencia, moda, calidad, nacional, envios, primavera, ropa, prendas, vestimenta, E-commerce, tienda, online">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="nav">
+        <div class="contenedor">
+            <div class="nav__logo--container">
+                <a href="#"><img class="nav__logo" type="image/png" src="./assets/logo.png"></a>
+            </div>
+            <!-- <div class="contenedor">
+                <button id="btn">iniciar</button>
+            </div> -->
+            <form class="form">
+                <i class="fas fa-search icono__busqueda"></i>
+                <label for="nav__busqueda"></label>
+                <input type="text" id="input__busqueda" placeholder="Estoy buscando...">
+           </form>
+           <div id="modos">
+                <div class="gray"></div>
+                <div class="blue"></div>
+                <div class="yellow"></div>
+            </div>
+            <ul class="navegacion__links">
+                <li class="navegacion__link link1 active" data-ref="home">
+                    <a href="#inicio">Inicio</a>
+                </li>
+                <li class="navegacion__link link2" data-ref="about">
+                    <a href="#productos">Productos</a>
+                    <ul class="submenu">
+                        <li><a href="#">Accesorios</a></li>
+                        <li><a href="#">Remeras</a></li>
+                        <li><a href="#">Pantalones</a></li>
+                        <li><a href="#">Zapatillas</a></li>
+                    </ul>
+                </li>
+               <li class="navegacion__link link4" data-ref="portfolio">
+                    <a href="#envios">Envios</a>
+               </li>
+               <li class="navegacion__link link3" data-ref="services">
+                    <a href="#contacto">Contacto</a>
+                    <ul class="submenu">
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Whatsapp</a></li>
+                    </ul>
+               </li>
+            </ul>
+            <i class="fas fa-bars icon_menu"></i>
+        </div>
+    </nav>
+
+
+    <section class="home" id="inicio">
+        <!-- <div class="home__bg"> -->
+            <div class="home__container">
+                <!-- <button id="comprarBtn">COMPRAR</button> -->
+                <h1 class="home__description--title">La mejor tienda online de Argentina</h1>
+                <h2 class="home__description--subtitle">Compra segura desde la comodidad de tu casa</h2>
+                <form class="home__form">
+                    <label for="busqueda"></label>
+                    <input type="text" id="home__input" placeholder="Busca tus productos">
+                    <i class="fas fa-search"></i>
+                </form>
+            </div>
+        <!-- </div> -->
+    </section>
+
+    <section class="productos" id="productos">
+        <div class="container__productos">
+            <h2 class="section__title">Nuestras ofertas</h2>
+            <a class="text__verMas" href="#">Ver más</a>
+            <h3 class="section__subtitle">¿ Cuál va a ser tu próxima compra ?</h3>
+            <div id="productos__grid" class="productos__grid">
+            </div>
+        </div>
+    </section>
+
+    <section style="display: none;" class="modal" id="modal">
+        <div class="modal__container">
+            <h3 id="modalTitle"></h3>
+            <p id="modalDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis eum praesentium natus doloribus qui aut nesciunt nobis totam quas tenetur debitis, quo delectus iure. Saepe repellendus neque repudiandae quibusdam qui?</p>
+            <p id="modalPrecio" class="modal__precio">precio$</p>
+            <button id="btnModal">Añadir al carrito</button>
+            <button id="btnCancelar">cancelar</button>
+        </div>
+    </section>
+
+    <section class="envios" id="envios">
+        <div class="container container__envios">
+            <h3 class="section__title">Elegí vos</h3>
+            <div class="container__items">
+                <div class="envios___item">
+                    <i class="fas fa-car-side"></i>
+                    <h4 class="section__subtitle">Envios gratis desde $1000</h4>
+                    <p class="envios__texto">Con tu compra superior a 1000$ el envios es gratis a cualquier punto del país.</p>
+                    <a class="text__verMas" href="#">Ver más</a>
+                </div>
+                <div class="envios___item envios___item--modifier">
+                    <i class="fas fa-car-side"></i>
+                    <h4 class="section__subtitle">Elegí la forma de pago</h4>
+                    <p class="envios__texto envios__texto--modified">Podés pagar con tarjeta, débito, efectivo o hasta 12 cuotas en cuotas fijas.</p>
+                    <a class="text__verMas" href="#">Ver más</a>
+                </div>
+                <div class="envios___item envios___item--modifier">
+                    <i class="fas fa-car-side"></i>
+                    <h4 class="section__subtitle">La seguridad en primer lugar</h4>
+                    <p class="envios__texto">Tu compra esta protegida desde el primer momento y no estas conforme con el producto lo podes devolver.</p>
+                    <a class="text__verMas" href="#">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pagos">
+        <div class="container">
+            <h3 class="section__title">Nuestos metodos de pago</h3>
+            <p class="section__subtitle">Hasta 24 cuotas sin intereses</p>
+            <div class="pagos__container">
+                <div class="pagos__item">
+                    <i class="fab fa-cc-visa"></i>
+                    <div class="pagos__item--text">
+                        <h4>Tarjeta de crédito</h4>
+                        <a class="text__verMas--modifier" href="#">Ver más</a>
+                    </div>
+                </div>
+                <div class="pagos__item">
+                    <i class="fab fa-cc-mastercard"></i>
+                    <div class="pagos__item--text">
+                        <h4>Tarjeta de débito</h4>
+                        <a class="text__verMas--modifier" href="#">Ver más</a>
+                    </div>
+                </div>
+                <div class="pagos__item">
+                    <i class="fab fa-cc-visa"></i>
+                    <div class="pagos__item--text">
+                        <h4>Cuotas Fijas</h4>
+                        <a class="text__verMas--modifier" href="#">Ver más</a>
+                    </div>
+                </div>
+                <div class="pagos__item">
+                    <i class="fab fa-cc-mastercard"></i>
+                    <div class="pagos__item--text">
+                        <h4>Efectivo</h4>
+                        <a class="text__verMas--modifier" href="#">Ver más</a>
+                    </div>
+                </div>
+                <div>
+                    <p>+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacto" id="contacto">
+        <div class="container">
+            <h3 class="section__title">Nuestras redes</h3>
+            <p class="section__subtitle">Contactanos</p>
+            <div class="container__contacto">
+                <div>
+                    <i class="fab fa-facebook"></i>
+                    <a href="#">Facebook</a>
+                </div>
+                <div>
+                    <i class="fab fa-whatsapp"></i>
+                    <a href="#">Whatsapp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="container">
+            <p>
+                <a href="#">E-commerce Argetina</a>
+            </p>
+            <p class="section__subtitle">
+                Todos los derechos reservados - Copyright © 2022
+            </p>
+        </div>
+    </section>
+
+    <script src="js/js.js"></script>
+    <script src="https://kit.fontawesome.com/46583ded3b.js" crossorigin="anonymous"></script>
+</body>
+</html>
