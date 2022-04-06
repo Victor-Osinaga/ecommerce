@@ -187,6 +187,24 @@ function pushCarrito(num3){
 }
 
 
+// LIBRERIA TAGCLOUD
+const Texts = [
+    'DEBITO', 'ECOMMERCE','ENVIOS INTERNACIONALES', 'SEGURIDAD', 'MODA', 'CUOTAS FIJAS', 'EFECTIVO', 'COMPRA PROTEGIDA', 'ONLINE', 'COMODIDAD', 'TODAS LAS TARJETAS', 'ENVIOS NACIONALES'
+  ]
+  
+  var tagCloud = TagCloud('.Sphere', Texts, {
+   radius: 140,
+   maxSpeed: 'fast',
+   initSpeed: 'fast',
+   direction: 240,
+   keep: true,
+   useContainerInlineStyles: true
+  });
+  
+  var color = '#404040';
+  document.querySelector('.Sphere').style.color = color;
+
+
         // this.id = id;
         // this.titulo = titulo.toUpperCase();
         // this.subtitulo = subtitulo;
