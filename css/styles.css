@@ -113,12 +113,18 @@ a{
   border-radius: 3px;
   cursor: pointer;
 }
-.nav #modos :nth-child(3){
+
+/* carrito */
+
+.nav #cart__ico__container:hover {
+  cursor: pointer;
+}
+
+.nav .cart__ico {
+  display: flex;
+  color: black;
   width: 20px;
   height: 20px;
-  background-color: yellow;
-  border-radius: 3px;
-  cursor: pointer;
 }
 
 .navegacion__links {
@@ -365,6 +371,9 @@ a{
     left: 0;
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     z-index: -1;
     transition: all 1.5s;
@@ -372,14 +381,15 @@ a{
 .modal__container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  width: 400px;
-  height: 400px;
+  width: 40%;
+  height: 80%;
   margin: auto;
   background-color: white;
   padding: 0 15px;
   transition: all 1.5s;
+  border-radius: 5px;
 }
 .modal__container p {
   text-align: center;
@@ -397,6 +407,42 @@ a{
 
 .modal__container #btnComprarModal:hover {
   cursor: pointer;
+}
+
+
+
+/* MODAL CARRITO */
+
+#carrito {
+  opacity: 0;
+    background: rgba(0, 0, 0, 0.4);
+    /* background: red; */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+    transition: all 1.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#carrito__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 80%;
+  margin: auto;
+  background-color: white;
+  padding: 0 15px;
+  transition: all 1.5s;
+  border-radius: 5px;
 }
 
 

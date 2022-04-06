@@ -136,28 +136,32 @@ for(let i=0; i<assets.productos.length; i++){
     `
 }
 
-let modal = document.getElementById("modal");
+let modalContainer = document.getElementById("modal");
 let btnInfoComprar = document.getElementsByClassName("btn__infoComprar");
 
-let btnCancelar = document.getElementById("btnCancelarModal");
-let btnComprar = document.getElementById("btnComprarModal");
+let btnCancelarModal = document.getElementById("btnCancelarModal");
+let btnComprarModal = document.getElementById("btnComprarModal");
 
 
 for (const el of btnInfoComprar) {
     el.addEventListener("click", (e)=> {
         console.log(`index del producto: ${el.getAttribute("data-id")}`);
-        let getId = el.getAttribute("data-id");
+        let getId = parseInt(el.getAttribute("data-id"));
         for (let i = 0; i < assets.productos.length; i++) {
-            if(getId == i){
+            if(getId === assets.productos[i].id){
                 mostrarModal(i);
-                btnCancelar.addEventListener("click", ()=>{
+                btnCancelarModal.addEventListener("click", ()=>{
                         cerrarModal(i);
                     }
                 )
 
-                btnComprar.addEventListener("click", ()=>{
-                    pushCarrito(i);
+                btnComprarModal.addEventListener("click", ()=>{
                     cerrarModal(i);
+                    pushCarrito(i);
+                    // mc();
+                    // carritoRenderContainer.innerHTML += `
+                    //     <div>${carrito[0].titulo}</div>
+                    // `
                     console.log(`producto ${assets.productos[i].titulo} añadido al carrito`);
                     
                 })
@@ -166,9 +170,13 @@ for (const el of btnInfoComprar) {
     })
 }
 
+let modalTitle = document.getElementById("modalTitle");
+let modalDescription = document.getElementById("modalDescription");
+let modalPrecio = document.getElementById("modalPrecio");
+
 function mostrarModal(num){
-    modal.style.opacity = "1";
-    modal.style.zIndex = "1";
+    modalContainer.style.opacity = "1";
+    modalContainer.style.zIndex = "1";
     modalTitle.innerHTML = `${assets.productos[num].titulo}`;
     modalDescription.innerHTML = `${assets.productos[num].descripcion}`;
     modalPrecio.innerHTML = `${assets.productos[num].precio}`;
@@ -184,8 +192,57 @@ function cerrarModal (num2){
 
 function pushCarrito(num3){
     carrito.push(new AddCarrito(assets.productos[num3].id, assets.productos[num3].titulo, assets.productos[num3].subtitulo, assets.productos[num3].precio, assets.productos[num3].descripcion))
+};
+
+
+// mostrar carrito
+
+let carritoIcono = document.getElementById('cart__ico__container');
+
+carritoIcono.addEventListener("click", ()=>{
+    mostrarCarrito();
+    console.log(`carrito presionado`);
+    
+})
+
+let carritoContainer = document.getElementById("carrito");
+
+function mostrarCarrito(){
+    carritoContainer.style.opacity = "1";
+    carritoContainer.style.zIndex = "1";
+    console.log(`carrito mostrado`);
+    mc();
+  
+};
+
+
+// renderizar carrito
+
+let carritoRenderContainer = document.getElementById("carrito__render");
+
+function mc(){
+    for(let i=0;i<carrito.length;i++){
+        carritoRenderContainer.innerHTML += `
+        <div>${carrito[i].titulo}</div>
+        `
+    }
 }
 
+// cerrar carrito
+let btnCerrarCarrito = document.getElementById("cerrarCarrito");
+
+btnCerrarCarrito.addEventListener("click", cerrarCarrito);
+
+function cerrarCarrito(){
+    carritoContainer.style.opacity = "0";
+    carritoContainer.style.zIndex = "-1";
+    console.log("container carrito cerrado")
+}
+
+
+// carritoRenderContainer.innerHTML += `
+//     ${carrito[0]}
+// `
 
 // LIBRERIA TAGCLOUD
 const Texts = [
