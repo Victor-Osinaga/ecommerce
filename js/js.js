@@ -18,7 +18,6 @@ const assets = {
             titulo: "Remera",
             subtitulo: "remera wireless",
             precio: 500,
-            disponibilidad: 15,
             url: "./assets/remera.jpg",
             descripcion: "Mochila Wireless Control importada.",
         },
@@ -27,7 +26,6 @@ const assets = {
             titulo: "Gorra Calabaza",
             subtitulo: "gorra calabaza wireless",
             precio: 500,
-            disponibilidad: 10,
             url: "./assets/gorro.jpg",
             descripcion: "Mochila Wireless Control importada.",
         },
@@ -36,7 +34,6 @@ const assets = {
             titulo: "Jean",
             subtitulo: "jean wireless",
             precio: 1000,
-            disponibilidad: 10,
             url: "./assets/jean.jpg",
             descripcion: "Mochila Wireless Control importada.",
         },
@@ -45,7 +42,6 @@ const assets = {
             titulo: "Camisa",
             subtitulo: "camisa wireless",
             precio: 800,
-            disponibilidad: 20,
             url: "./assets/camisa.jpg",
             descripcion: "Mochila Wireless Control importada.",
         },
@@ -54,7 +50,6 @@ const assets = {
             titulo: "Short",
             subtitulo: "short wireless",
             precio: 400,
-            disponibilidad: 15,
             url: "./assets/short.jpg",
             descripcion: "Mochila Wireless Control importada.",
         },
@@ -63,7 +58,6 @@ const assets = {
             titulo: "Buzo",
             subtitulo: "buzo wireless",
             precio: 700,
-            disponibilidad: 5,
             url: "./assets/buzo.jpg",
             descripcion: "Mochila Wireless Control importada.",
         },
@@ -72,7 +66,6 @@ const assets = {
             titulo: "Vicera",
             subtitulo: "vicera wireless",
             precio: 250,
-            disponibilidad: 30,
             url: "./assets/gorra.jpg",
             descripcion: "Mochila Wireless Control importada.",
         },
@@ -81,26 +74,7 @@ const assets = {
             titulo: "Mochila",
             subtitulo: "Mochila wireless",
             precio: 2000,
-            disponibilidad: 25,
             url: "./assets/mochila.jpg",
-            descripcion: "Mochila Wireless Control importada.",
-        },
-        {
-            id: 7,
-            titulo: "Mochila",
-            subtitulo: "Mochila wireless",
-            precio: 2000,
-            disponibilidad: 25,
-            url: "./assets/mochila.jpg",
-            descripcion: "Mochila Wireless Control importada.",
-        },
-        {
-            id: 7,
-            titulo: "Mochila",
-            subtitulo: "Mochila wireless",
-            precio: 2000,
-            disponibilidad: 25,
-            url: "https://pbs.twimg.com/media/D6uc2kBX4AAv3xV.jpg",
             descripcion: "Mochila Wireless Control importada.",
         },
     ]
@@ -116,7 +90,22 @@ class Producto {
         this.url = url;
         this.descripcion = descripcion;
     }
-}  
+};
+
+let carrito = [
+
+];
+
+class AddCarrito{
+    constructor (id, titulo, subtitulo, precio, descripcion){
+        this.id = id;
+        this.titulo = titulo.toUpperCase();
+        this.subtitulo = subtitulo;
+        this.precio = parseInt(precio);
+        this.descripcion = descripcion;
+    }
+};
+
 // let btn = document.getElementById("btn");
 let renderContainer = document.getElementById("productos__grid");
 
@@ -137,7 +126,7 @@ for(let i=0; i<assets.productos.length; i++){
                     <i class="fas fa-info-circle"></i>
                     Info
                 </a>
-                <a class="btn__comprar">
+                <a data-id="${assets.productos[i].id}" class="btn__comprar btn__infoComprar">
                     <i class="fas fa-shopping-cart"></i>
                     Comprar
                 </a>
@@ -146,6 +135,69 @@ for(let i=0; i<assets.productos.length; i++){
     </div>
     `
 }
+
+let modal = document.getElementById("modal");
+let btnInfoComprar = document.getElementsByClassName("btn__infoComprar");
+
+let btnCancelar = document.getElementById("btnCancelarModal");
+let btnComprar = document.getElementById("btnComprarModal");
+
+
+for (const el of btnInfoComprar) {
+    el.addEventListener("click", (e)=> {
+        console.log(`index del producto: ${el.getAttribute("data-id")}`);
+        let getId = el.getAttribute("data-id");
+        for (let i = 0; i < assets.productos.length; i++) {
+            if(getId == i){
+                mostrarModal(i);
+                btnCancelar.addEventListener("click", ()=>{
+                        cerrarModal(i);
+                    }
+                )
+
+                btnComprar.addEventListener("click", ()=>{
+                    pushCarrito(i);
+                    cerrarModal(i);
+                    console.log(`producto ${assets.productos[i].titulo} añadido al carrito`);
+                    
+                })
+            }
+        }
+    })
+}
+
+function mostrarModal(num){
+    modal.style.opacity = "1";
+    modal.style.zIndex = "1";
+    modalTitle.innerHTML = `${assets.productos[num].titulo}`;
+    modalDescription.innerHTML = `${assets.productos[num].descripcion}`;
+    modalPrecio.innerHTML = `${assets.productos[num].precio}`;
+    console.log(`modal del producto: ${assets.productos[num].titulo}`)
+  
+};
+
+function cerrarModal (num2){
+        modal.style.opacity = "0";
+        modal.style.zIndex = "-1";
+        console.log(`modal removido`);
+}
+
+function pushCarrito(num3){
+    carrito.push(new AddCarrito(assets.productos[num3].id, assets.productos[num3].titulo, assets.productos[num3].subtitulo, assets.productos[num3].precio, assets.productos[num3].descripcion))
+}
+
+
+        // this.id = id;
+        // this.titulo = titulo.toUpperCase();
+        // this.subtitulo = subtitulo;
+        // this.precio = parseInt(precio);
+        // this.descripcion = descripcion;
+
+// producto: ${assets.productos[num2].titulo} añadido al carrito y 
+
+// function renderCarrito() {
+
+// };
 
 
 
