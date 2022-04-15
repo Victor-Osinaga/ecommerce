@@ -30,6 +30,7 @@
             </div>
             <div id="cart__ico__container">
                 <img class="cart__ico" src="./assets/cart.svg" alt="cart">
+                <span id="carritoContador"></span>
             </div>
             <ul class="navegacion__links">
                 <li class="navegacion__link link1 active" data-ref="home">
@@ -86,13 +87,13 @@
     </section>
 
     <section class="modal" id="modal">
-        <div class="modal__container">
+        <!-- <div class="modal__container">
             <h3 id="modalTitle"></h3>
             <p id="modalDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis eum praesentium natus doloribus qui aut nesciunt nobis totam quas tenetur debitis, quo delectus iure. Saepe repellendus neque repudiandae quibusdam qui?</p>
             <p id="modalPrecio" class="modal__precio">precio$</p>
             <button id="btnComprarModal">Añadir al carrito</button>
             <button id="btnCancelarModal">cancelar</button>
-        </div>
+        </div> -->
     </section>
 
     <!-- carrito -->
@@ -102,7 +103,26 @@
             <h3>Productos en tu carrito</h3>
             <div>
                 <h4>Solo queda un paso.. y es que confirmes la compra</h4>
-                <div id="carrito__render"></div>
+                <div id="carrito__render">
+                    <ul>
+                        <li><h4>Productos</h4></li>
+                        <ul id="productosNombre">
+                        </ul>
+                    </ul>
+                    <ul>
+                        <li><h4>Cantidad</h4></li>
+                        <ul id="productosCantidad">
+                        </ul>
+                    </ul>
+                    <ul>
+                        <li><h4>Sub Total</h4></li>
+                        <ul id="productosPrecio">
+                        </ul>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Total: <span id="spanTotal"></span></h4>
+                </div>
                 <button id="cerrarCarrito">cancelar</button>
             </div>
         </div>

@@ -20,6 +20,7 @@ const assets = {
             precio: 500,
             url: "./assets/remera.jpg",
             descripcion: "Mochila Wireless Control importada.",
+            cantidad: 1,
         },
         {
             id: 1,
@@ -28,6 +29,7 @@ const assets = {
             precio: 500,
             url: "./assets/gorro.jpg",
             descripcion: "Mochila Wireless Control importada.",
+            cantidad: 1,
         },
         {
             id: 2,
@@ -36,6 +38,7 @@ const assets = {
             precio: 1000,
             url: "./assets/jean.jpg",
             descripcion: "Mochila Wireless Control importada.",
+            cantidad: 1,
         },
         {
             id: 3,
@@ -44,6 +47,7 @@ const assets = {
             precio: 800,
             url: "./assets/camisa.jpg",
             descripcion: "Mochila Wireless Control importada.",
+            cantidad: 1,
         },
         {
             id: 4,
@@ -52,6 +56,7 @@ const assets = {
             precio: 400,
             url: "./assets/short.jpg",
             descripcion: "Mochila Wireless Control importada.",
+            cantidad: 1,
         },
         {
             id: 5,
@@ -60,6 +65,7 @@ const assets = {
             precio: 700,
             url: "./assets/buzo.jpg",
             descripcion: "Mochila Wireless Control importada.",
+            cantidad: 1,
         },
         {
             id: 6,
@@ -68,6 +74,7 @@ const assets = {
             precio: 250,
             url: "./assets/gorra.jpg",
             descripcion: "Mochila Wireless Control importada.",
+            cantidad: 1,
         },
         {
             id: 7,
@@ -76,6 +83,7 @@ const assets = {
             precio: 2000,
             url: "./assets/mochila.jpg",
             descripcion: "Mochila Wireless Control importada.",
+            cantidad: 1,
         },
     ]
 };
@@ -97,17 +105,19 @@ let carrito = [
 ];
 
 class AddCarrito{
-    constructor (id, titulo, subtitulo, precio, descripcion){
+    constructor (id, titulo, subtitulo, precio, descripcion, cantidad){
         this.id = id;
         this.titulo = titulo.toUpperCase();
         this.subtitulo = subtitulo;
         this.precio = parseInt(precio);
         this.descripcion = descripcion;
+        this.cantidad = cantidad;
     }
 };
 
 // let btn = document.getElementById("btn");
 let renderContainer = document.getElementById("productos__grid");
+
 
 for(let i=0; i<assets.productos.length; i++){
     renderContainer.innerHTML += `
@@ -126,7 +136,7 @@ for(let i=0; i<assets.productos.length; i++){
                     <i class="fas fa-info-circle"></i>
                     Info
                 </a>
-                <a data-id="${assets.productos[i].id}" class="btn__comprar btn__infoComprar">
+                <a id="${assets.productos[i].id}" class="btn__comprar">
                     <i class="fas fa-shopping-cart"></i>
                     Comprar
                 </a>
@@ -134,41 +144,94 @@ for(let i=0; i<assets.productos.length; i++){
         </div>
     </div>
     `
+};
+
+
+
+let btnComprar = document.getElementsByClassName("btn__comprar");
+let assetsProductos = assets.productos;
+let carritoProductos = carrito;
+
+console.log(typeof(btnComprar));
+
+for (const el of btnComprar) {
+    let idElemento = parseInt(el.getAttribute("id"));
+    el.addEventListener("click", ()=>{
+        pushCarrito(assets.productos[idElemento], idElemento)
+    });
+    
 }
+
+// push carrito
+
+function pushCarrito(num3, numId){
+    if (carrito.indexOf(num3) === -1){
+    carrito.push(num3);
+    carritoContadorDeProductos();
+    alert(`se ha añadido al carrito el producto ${assets.productos[numId].titulo}`);
+    }else if (carrito.indexOf(num3) > -1){
+        console.log("asdadsasddsasda");
+        const buscarEnCarritoSiExiste= carrito.find(item => item.id == numId);
+        console.log(buscarEnCarritoSiExiste)
+        const resultado = buscarEnCarritoSiExiste.cantidad = buscarEnCarritoSiExiste.cantidad + 1;
+        console.log(resultado);
+        carritoContadorDeProductos()
+    }
+    // carrito.push(new AddCarrito(assets.productos[num3].id, assets.productos[num3].titulo, assets.productos[num3].subtitulo, assets.productos[num3].precio, assets.productos[num3].descripcion, "1"));
+    // carritoContadorDeProductos();
+    // alert(`se ha añadido al carrito el producto ${assets.productos[num3].titulo}`);
+}
+
 
 let modalContainer = document.getElementById("modal");
-let btnInfoComprar = document.getElementsByClassName("btn__infoComprar");
+
+function renderModal(num) {
+    modalContainer.innerHTML = `
+        <div class="modal__container">
+            <h3 id="modalTitle">${assets.productos[num].titulo}</h3>
+            <p id="modalDescription">${assets.productos[num].descripcion}</p>
+            <p id="modalPrecio" class="modal__precio">$ ${assets.productos[num].precio}</p>
+            <button class="btnComprarModal" data-id="${num}-data">Añadir al carrito</button>
+            <button id="btnCancelarModal">cancelar</button>
+        </div>
+    `
+    console.log(`${assets.productos[num].id}`);
+    
+    mostrarModal(num);
+}
+
 
 let btnCancelarModal = document.getElementById("btnCancelarModal");
-let btnComprarModal = document.getElementById("btnComprarModal");
 
 
-for (const el of btnInfoComprar) {
-    el.addEventListener("click", (e)=> {
-        console.log(`index del producto: ${el.getAttribute("data-id")}`);
-        let getId = parseInt(el.getAttribute("data-id"));
-        for (let i = 0; i < assets.productos.length; i++) {
-            if(getId === assets.productos[i].id){
-                mostrarModal(i);
-                btnCancelarModal.addEventListener("click", ()=>{
-                        cerrarModal(i);
-                    }
-                )
 
-                btnComprarModal.addEventListener("click", ()=>{
-                    cerrarModal(i);
-                    pushCarrito(i);
-                    // mc();
-                    // carritoRenderContainer.innerHTML += `
-                    //     <div>${carrito[0].titulo}</div>
-                    // `
-                    console.log(`producto ${assets.productos[i].titulo} añadido al carrito`);
+
+// for (const el of btnInfoComprar) {
+//     el.addEventListener("click", (e)=> {
+//         console.log(`index del producto: ${el.getAttribute("data-id")}`);
+//         let getId = parseInt(el.getAttribute("data-id"));
+//         for (let i = 0; i < assets.productos.length; i++) {
+//             if(getId === assets.productos[i].id){
+//                 mostrarModal(i);
+//                 btnCancelarModal.addEventListener("click", ()=>{
+//                         cerrarModal(i);
+//                     }
+//                 )
+
+//                 btnComprarModal.addEventListener("click", ()=>{
+//                     cerrarModal(i);
+//                     pushCarrito(i);
+//                     // mc();
+//                     // carritoRenderContainer.innerHTML += `
+//                     //     <div>${carrito[0].titulo}</div>
+//                     // `
+//                     console.log(`producto ${assets.productos[i].titulo} añadido al carrito`);
                     
-                })
-            }
-        }
-    })
-}
+//                 })
+//             }
+//         }
+//     })
+// }
 
 let modalTitle = document.getElementById("modalTitle");
 let modalDescription = document.getElementById("modalDescription");
@@ -177,27 +240,59 @@ let modalPrecio = document.getElementById("modalPrecio");
 function mostrarModal(num){
     modalContainer.style.opacity = "1";
     modalContainer.style.zIndex = "1";
-    modalTitle.innerHTML = `${assets.productos[num].titulo}`;
-    modalDescription.innerHTML = `${assets.productos[num].descripcion}`;
-    modalPrecio.innerHTML = `${assets.productos[num].precio}`;
-    console.log(`modal del producto: ${assets.productos[num].titulo}`)
+    return console.log(`modal del producto: ${assets.productos[num].titulo}`)
   
 };
+
+// function mostrarModal(num){
+//     modalContainer.style.opacity = "1";
+//     modalContainer.style.zIndex = "1";
+//     modalTitle.innerHTML = `${assets.productos[num].titulo}`;
+//     modalDescription.innerHTML = `${assets.productos[num].descripcion}`;
+//     modalPrecio.innerHTML = `${assets.productos[num].precio}`;
+//     return console.log(`modal del producto: ${assets.productos[num].titulo}`)
+  
+// };
 
 function cerrarModal (num2){
         modal.style.opacity = "0";
         modal.style.zIndex = "-1";
-        console.log(`modal removido`);
+        console.log(`modal ${assets.productos[num2].titulo} removido`);
 }
 
-function pushCarrito(num3){
-    carrito.push(new AddCarrito(assets.productos[num3].id, assets.productos[num3].titulo, assets.productos[num3].subtitulo, assets.productos[num3].precio, assets.productos[num3].descripcion))
-};
+
+
+function carritoContadorDeProductos(){
+    let carritoContador = document.getElementById("carritoContador");
+    let carritoProductos = carrito.length;
+    // let result = 0;
+    // for (let i = 0; i <= carrito.length; i++) {
+    //     result = ressult + carrito[i].cantidad
+    // }
+    let resultado = 0;
+    for(let i=0;i<carrito.length;i++){
+        resultado = parseInt(resultado + carrito[i].cantidad);
+        carritoContador.innerHTML =`
+        ${parseInt(resultado)}
+        `;
+
+    }
+
+    // carritoContador.innerHTML = carritoProductos;
+    
+}
 
 
 // mostrar carrito
 
 let carritoIcono = document.getElementById('cart__ico__container');
+let carritoContainer = document.getElementById("carrito");
+// let carritoRenderContainer = document.getElementById("carrito__render");
+let carritoRenderNombre = document.getElementById("productosNombre");
+let carritoRenderCantidad = document.getElementById("productosCantidad");
+let carritoRenderPrecio = document.getElementById("productosPrecio");
+let carritoRenderTotal = document.getElementById("spanTotal");
+
 
 carritoIcono.addEventListener("click", ()=>{
     mostrarCarrito();
@@ -205,28 +300,34 @@ carritoIcono.addEventListener("click", ()=>{
     
 })
 
-let carritoContainer = document.getElementById("carrito");
+
 
 function mostrarCarrito(){
+
+    let finalPrecio=0;
+
     carritoContainer.style.opacity = "1";
     carritoContainer.style.zIndex = "1";
     console.log(`carrito mostrado`);
-    mc();
-  
-};
-
-
-// renderizar carrito
-
-let carritoRenderContainer = document.getElementById("carrito__render");
-
-function mc(){
     for(let i=0;i<carrito.length;i++){
-        carritoRenderContainer.innerHTML += `
-        <div>${carrito[i].titulo}</div>
+        carritoRenderNombre.innerHTML += `
+            <li>${carrito[i].titulo}</li>
+        `;
+        carritoRenderCantidad.innerHTML += `
+            <li>${carrito[i].cantidad}</li>
+        `;
+        carritoRenderPrecio.innerHTML += `
+            <li>${finalPrecio + (carrito[i].precio * carrito[i].cantidad)}</li>
+        `;
+
+        
+        
+        carritoRenderTotal.innerHTML = `
+            ${finalPrecio = (finalPrecio + carrito[i].precio * carrito[i].cantidad)}
         `
+        // <div>${carrito[i].titulo}</div>
     }
-}
+};
 
 // cerrar carrito
 let btnCerrarCarrito = document.getElementById("cerrarCarrito");
@@ -236,13 +337,13 @@ btnCerrarCarrito.addEventListener("click", cerrarCarrito);
 function cerrarCarrito(){
     carritoContainer.style.opacity = "0";
     carritoContainer.style.zIndex = "-1";
-    console.log("container carrito cerrado")
+    console.log("container carrito cerrado");
+    carritoRenderNombre.innerHTML = "";
+    carritoRenderCantidad.innerHTML = "";
+    carritoRenderPrecio.innerHTML = "";
+    carritoRenderTotal.innerHTML = "";
 }
 
-
-// carritoRenderContainer.innerHTML += `
-//     ${carrito[0]}
-// `
 
 // LIBRERIA TAGCLOUD
 const Texts = [
@@ -262,17 +363,6 @@ const Texts = [
   document.querySelector('.Sphere').style.color = color;
 
 
-        // this.id = id;
-        // this.titulo = titulo.toUpperCase();
-        // this.subtitulo = subtitulo;
-        // this.precio = parseInt(precio);
-        // this.descripcion = descripcion;
-
-// producto: ${assets.productos[num2].titulo} añadido al carrito y 
-
-// function renderCarrito() {
-
-// };
 
 
 

@@ -47,11 +47,12 @@ a{
   align-items: center;
   /* background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.02); */
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.4);
   border: 2px solid rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(5px);
   height: 45px;
   width: 90%;
+  position: fixed;
 }
 
 
@@ -116,8 +117,28 @@ a{
 
 /* carrito */
 
+.nav #cart__ico__container{
+  display: flex;
+  gap: 5px;
+}
+
 .nav #cart__ico__container:hover {
   cursor: pointer;
+}
+
+.nav #carritoContador {
+  font-size: 15px;
+  transition: all 1s;
+  animation-name: carritoAnimacion;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0,1.72,1,-0.66);
+}
+
+@keyframes carritoAnimacion {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.6);}
+  100% {transform: scale(1);}
 }
 
 .nav .cart__ico {
@@ -165,7 +186,11 @@ a{
 
 /* HOME */
 .home {
-  background-color: red;
+  /* background-color: red; */
+  background-image: url("https://img.freepik.com/free-vector/e-commerce-icon-robotic-hand-internet-shopping-online-purchase-add-cart_127544-586.jpg?w=2000");
+  background-repeat: no-repeat;
+  background-position: 0%;
+  background-size: cover;
   margin-bottom: 40px;
 }
 
@@ -259,6 +284,17 @@ a{
   width: 40%;
   column-gap: 7px;
   border-radius: 2px;
+  transition: all .5s;
+}
+
+.btn__info:hover {
+  background-color: rgba(109, 108, 108, 0.371);
+  transition: all .5s;
+}
+
+ .btn__comprar:hover {
+  background-color: rgba(109, 108, 108, 0.371);
+  transition: all .5s;
 }
 
 
@@ -443,6 +479,13 @@ a{
   padding: 0 15px;
   transition: all 1.5s;
   border-radius: 5px;
+}
+
+#carrito__render {
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+  justify-content: space-between;
 }
 
 
