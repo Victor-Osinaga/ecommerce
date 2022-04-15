@@ -305,6 +305,7 @@ carritoIcono.addEventListener("click", ()=>{
 function mostrarCarrito(){
 
     let finalPrecio=0;
+    console.log(finalPrecio);
 
     carritoContainer.style.opacity = "1";
     carritoContainer.style.zIndex = "1";
@@ -344,6 +345,19 @@ function cerrarCarrito(){
     carritoRenderTotal.innerHTML = "";
 }
 
+
+// comprar items del carrito
+
+let btn_comprar = document.getElementById("comprarItems");
+
+btn_comprar.addEventListener("click", comprarBtn);
+function comprarBtn(){
+    carrito = [];
+    cerrarCarrito();
+    let carritoContador = document.getElementById("carritoContador");
+    carritoContador.innerHTML="";
+    alert("Gracias por tu compra!")
+}
 
 // LIBRERIA TAGCLOUD
 const Texts = [
