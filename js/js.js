@@ -1,17 +1,4 @@
 const assets = {
-    metodos: {
-        buscar: (id) => {
-            return assets.productos.find(producto => producto.id === id)
-        },
-        remover: (productos) => {
-            productos.forEach(producto => {
-                const item = assets.metodos.find(producto.id);
-                item.disponibilidad = item.disponibilidad - item.disponibilidad;
-            });
-
-            console.log(assets);
-        },
-    },
     productos: [
         {
             id: 0,
@@ -147,7 +134,7 @@ for(let i=0; i<assets.productos.length; i++){
 };
 
 
-
+// btn comprar / añadir al carrito
 let btnComprar = document.getElementsByClassName("btn__comprar");
 let assetsProductos = assets.productos;
 let carritoProductos = carrito;
@@ -158,7 +145,8 @@ for (const el of btnComprar) {
     let idElemento = parseInt(el.getAttribute("id"));
     el.addEventListener("click", ()=>{
         pushCarrito(assets.productos[idElemento], idElemento)
-    });
+    })
+    ;
     
 }
 
@@ -168,12 +156,12 @@ function pushCarrito(num3, numId){
     if (carrito.indexOf(num3) === -1){
     carrito.push(num3);
     carritoContadorDeProductos();
-    alert(`se ha añadido al carrito el producto ${assets.productos[numId].titulo}`);
+    // alert(`se ha añadido al carrito el producto ${assets.productos[numId].titulo}`);
     }else if (carrito.indexOf(num3) > -1){
         console.log("asdadsasddsasda");
-        const buscarEnCarritoSiExiste= carrito.find(item => item.id == numId);
+        let buscarEnCarritoSiExiste= carrito.find(item => item.id == numId);
         console.log(buscarEnCarritoSiExiste)
-        const resultado = buscarEnCarritoSiExiste.cantidad = buscarEnCarritoSiExiste.cantidad + 1;
+        let resultado = buscarEnCarritoSiExiste.cantidad = buscarEnCarritoSiExiste.cantidad + 1;
         console.log(resultado);
         carritoContadorDeProductos()
     }
@@ -306,6 +294,8 @@ function mostrarCarrito(){
 
     let finalPrecio=0;
     console.log(finalPrecio);
+    console.log(priceFinal());
+    
 
     carritoContainer.style.opacity = "1";
     carritoContainer.style.zIndex = "1";
@@ -315,7 +305,9 @@ function mostrarCarrito(){
             <li>${carrito[i].titulo}</li>
         `;
         carritoRenderCantidad.innerHTML += `
-            <li>${carrito[i].cantidad}</li>
+            <li>${carrito[i].cantidad}<span class="addSpan" data-id="${carrito[i].id}">+</span>
+            <span class="delSpan" data-id="${carrito[i].id}">-</span></li>
+            
         `;
         carritoRenderPrecio.innerHTML += `
             <li>${finalPrecio + (carrito[i].precio * carrito[i].cantidad)}</li>
@@ -324,11 +316,64 @@ function mostrarCarrito(){
         
         
         carritoRenderTotal.innerHTML = `
-            ${finalPrecio = (finalPrecio + carrito[i].precio * carrito[i].cantidad)}
+            ${priceFinal()}
         `
+        addModal()
         // <div>${carrito[i].titulo}</div>
     }
 };
+
+// añadir y eliminar elementos del carrito
+
+function addModal() {
+    let addSpan = document.getElementsByClassName(`addSpan`);
+    for (const el of addSpan) {
+        let dataId = el.getAttribute("data-id");
+        el.addEventListener("click", ()=>{
+            // console.log(dataId);
+            for (let i = 0; i < carrito.length; i++) {
+                // console.log(carrito[i]);
+                let prod = carrito[i];
+                // let objet = carrito[i].cantidad;
+                // console.log(objet);
+                
+                if(prod.id == dataId){
+                    // objet = objet + 1;
+                    console.log(carrito[i].cantidad);
+                    carrito[i].cantidad = carrito[i].cantidad + 1;
+                    console.log(carrito[i].cantidad);
+                    // carritoRenderCantidad.innerHTML =`<li>${carrito[i].cantidad}<span class="addSpan" data-id="${carrito[i].id}">+</span>
+                    // <span class="delSpan" data-id="${carrito[i].id}">-</span></li>`
+                }
+            }
+        })
+    }
+}
+
+// let btnComprar = document.getElementsByClassName("btn__comprar");
+// let assetsProductos = assets.productos;
+// let carritoProductos = carrito;
+
+// console.log(typeof(btnComprar));
+
+// for (const el of btnComprar) {
+//     let idElemento = parseInt(el.getAttribute("id"));
+//     el.addEventListener("click", ()=>{
+//         pushCarrito(assets.productos[idElemento], idElemento)
+//     })
+//     ;
+    
+// }
+
+// precio final
+
+const priceFinal =function obtenerPrecioFinal () {
+    let resultado = 0;
+    for (let i = 0; i < carrito.length; i++) {
+        resultado += carrito[i].precio * carrito[i].cantidad
+    }
+    return resultado
+}
 
 // cerrar carrito
 let btnCerrarCarrito = document.getElementById("cerrarCarrito");
@@ -346,17 +391,27 @@ function cerrarCarrito(){
 }
 
 
-// comprar items del carrito
+// comprar items del carrito (ULTIMOOOO COMMIT/ARREGLO)
 
 let btn_comprar = document.getElementById("comprarItems");
 
 btn_comprar.addEventListener("click", comprarBtn);
 function comprarBtn(){
-    carrito = [];
+    carrito.splice(0, carrito.length);
     cerrarCarrito();
+    resetearCantidad();
     let carritoContador = document.getElementById("carritoContador");
     carritoContador.innerHTML="";
-    alert("Gracias por tu compra!")
+    // alert("Gracias por tu compra!")
+}
+
+
+// resetear cantidad
+
+function resetearCantidad(){
+    for (let i = 0; i < assets.productos.length; i++) {
+        assets.productos[i].cantidad = 1;
+    }
 }
 
 // LIBRERIA TAGCLOUD
@@ -381,26 +436,5 @@ const Texts = [
 
 
 
-// AGREGAR PRODUCTOS AL CATALOGO
-// btn.addEventListener("click", agregarNuevoProd);
 
-// function agregarNuevoProd(){
-//     let cantidad = prompt("ingresela cantidad de productos que quiere comprar ")
-//     for (let i=1; i <= cantidad; i++) {
-//         let id = prompt(`ingrese el ID ${i}`);
-//         let titulo = prompt(`ingrese el TITULO ${i}`);
-//         let subtitulo = prompt(`ingrese el SUBTITULO ${i}`);
-//         let precio = parseInt(prompt(`ingrese el precio ${i}`));
-//         let disponibilidad = prompt(`ingrese la DISPONIBILIDAD ${i}`);
-//         let url = prompt(`ingrese la URL ${i}`);
-//         let descripcion = prompt(`ingrese la DESCRIPCION ${i}`);
-
-       
-//             assets.productos.push(new Producto(id, titulo, subtitulo, precio, disponibilidad, url, descripcion));
-//         /*else{
-//             nombre = prompt(`ingrese de nuevo el NOMBRE del producto ${i}`);
-//             precio = parseInt(prompt(`ingrese de nuevo el PRECIO del producto ${i}`));
-//         }*/
-//     }
-// }
 
