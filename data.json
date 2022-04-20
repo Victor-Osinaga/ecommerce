@@ -1,0 +1,74 @@
+[
+  {
+    "id": 0,
+    "titulo":"Remera",
+    "subtitulo": "remera wireless",
+    "precio": 500,
+    "url": "./assets/remera.jpg",
+    "descripcion": "Mochila Wireless Control importada.",
+    "cantidad": "1"
+  },
+  {
+    "id": 1,
+    "titulo": "Gorra Calabaza",
+    "subtitulo": "gorra calabaza wireless",
+    "precio": 500,
+    "url": "./assets/gorro.jpg",
+    "descripcion": "Mochila Wireless Control importada.",
+    "cantidad": 1
+  },
+  {
+    "id": 2,
+    "titulo": "Jean",
+    "subtitulo": "jean wireless",
+    "precio": 1000,
+    "url": "./assets/jean.jpg",
+    "descripcion": "Mochila Wireless Control importada.",
+    "cantidad": 1
+  },
+  {
+    "id": 3,
+    "titulo": "Camisa",
+    "subtitulo": "camisa wireless",
+    "precio": 800,
+    "url": "./assets/camisa.jpg",
+    "descripcion": "Mochila Wireless Control importada.",
+    "cantidad": 1
+  },
+  {
+    "id": 4,
+    "titulo": "Short",
+    "subtitulo": "short wireless",
+    "precio": 400,
+    "url": "./assets/short.jpg",
+    "descripcion": "Mochila Wireless Control importada.",
+    "cantidad": 1
+  },
+  {
+    "id": 5,
+    "titulo": "Buzo",
+    "subtitulo": "buzo wireless",
+    "precio": 700,
+    "url": "./assets/buzo.jpg",
+    "descripcion": "Mochila Wireless Control importada.",
+    "cantidad": 1
+  },
+  {
+    "id": 6,
+    "titulo": "Vicera",
+    "subtitulo": "vicera wireless",
+    "precio": 250,
+    "url": "./assets/gorra.jpg",
+    "descripcion": "Mochila Wireless Control importada.",
+    "cantidad": 1
+  },
+  {
+    "id": 7,
+    "titulo": "Mochila",
+    "subtitulo": "Mochila wireless",
+    "precio": 2000,
+    "url": "./assets/mochila.jpg",
+    "descripcion": "Mochila Wireless Control importada.",
+    "cantidad": 1
+  }
+]
