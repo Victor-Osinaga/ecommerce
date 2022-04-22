@@ -3,7 +3,7 @@
 // __________________________________________________________________________________________________
 
 async function getData(){
-    let res = await fetch ('../data.json')
+    let res = await fetch ('./data.json')
     let data = await res.json();
     console.log(data);
 
