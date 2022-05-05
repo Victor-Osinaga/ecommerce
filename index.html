@@ -24,10 +24,6 @@
                 <label for="nav__busqueda"></label>
                 <input type="text" id="input__busqueda" placeholder="Estoy buscando...">
            </form>
-           <div id="modos">
-                <div class="gray"></div>
-                <div class="blue"></div>
-            </div>
             <div id="cart__ico__container">
                 <img class="cart__ico" src="./assets/cart.svg" alt="cart">
                 <span id="carritoContador"></span>
@@ -100,9 +96,9 @@
 
     <section id="carrito">
         <div id="carrito__container">
-            <h3>Productos en tu carrito</h3>
+            <h3 class="carrito__titulo">Productos en tu carrito</h3>
             <div>
-                <h4>Solo queda un paso.. y es que confirmes la compra</h4>
+                <h4 class="carrito__subtitulo">Solo queda un paso.. y es que confirmes la compra</h4>
                 <div id="carrito__render">
                     <ul>
                         <li><h4>Productos</h4></li>
@@ -121,7 +117,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4>Total: <span id="spanTotal"></span></h4>
+                    <h4 class="precioTotal">Total: <span id="spanTotal"></span></h4>
                 </div>
                 <button id="cerrarCarrito">cancelar</button>
                 <button id="comprarItems">Comprar</button>

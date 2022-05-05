@@ -192,6 +192,7 @@ a{
   background-position: 0%;
   background-size: cover;
   margin-bottom: 40px;
+  padding: 20px;
 }
 
 .home__container {
@@ -479,13 +480,25 @@ a{
   padding: 0 15px;
   transition: all 1.5s;
   border-radius: 5px;
+  text-align: center;
+}
+
+.carrito__subtitulo {
+  margin: 10px 0;
 }
 
 #carrito__render {
   display: flex;
   flex-direction: row;
-  background-color: red;
   justify-content: space-between;
+}
+
+#carrito__render li {
+  margin: 15px;
+}
+
+.precioTotal {
+  margin: 10px 0;
 }
 
 

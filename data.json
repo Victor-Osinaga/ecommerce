@@ -5,8 +5,8 @@
     "subtitulo": "remera wireless",
     "precio": 500,
     "url": "./assets/remera.jpg",
-    "descripcion": "Mochila Wireless Control importada.",
-    "cantidad": "1"
+    "descripcion": "Remera de algodón.",
+    "cantidad": 1
   },
   {
     "id": 1,
@@ -14,7 +14,7 @@
     "subtitulo": "gorra calabaza wireless",
     "precio": 500,
     "url": "./assets/gorro.jpg",
-    "descripcion": "Mochila Wireless Control importada.",
+    "descripcion": "Gorra para niño o niña.",
     "cantidad": 1
   },
   {
@@ -23,7 +23,7 @@
     "subtitulo": "jean wireless",
     "precio": 1000,
     "url": "./assets/jean.jpg",
-    "descripcion": "Mochila Wireless Control importada.",
+    "descripcion": "Jean para mujer elastizado.",
     "cantidad": 1
   },
   {
@@ -32,7 +32,7 @@
     "subtitulo": "camisa wireless",
     "precio": 800,
     "url": "./assets/camisa.jpg",
-    "descripcion": "Mochila Wireless Control importada.",
+    "descripcion": "Camisa color bordo entallada.",
     "cantidad": 1
   },
   {
@@ -41,7 +41,7 @@
     "subtitulo": "short wireless",
     "precio": 400,
     "url": "./assets/short.jpg",
-    "descripcion": "Mochila Wireless Control importada.",
+    "descripcion": "Short especial para verano.",
     "cantidad": 1
   },
   {
@@ -50,7 +50,7 @@
     "subtitulo": "buzo wireless",
     "precio": 700,
     "url": "./assets/buzo.jpg",
-    "descripcion": "Mochila Wireless Control importada.",
+    "descripcion": "Buzo marca Cats unisex",
     "cantidad": 1
   },
   {
@@ -59,7 +59,7 @@
     "subtitulo": "vicera wireless",
     "precio": 250,
     "url": "./assets/gorra.jpg",
-    "descripcion": "Mochila Wireless Control importada.",
+    "descripcion": "Vicera marca Animals.",
     "cantidad": 1
   },
   {
